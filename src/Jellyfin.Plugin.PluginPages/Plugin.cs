@@ -83,15 +83,14 @@ public class Plugin : BasePlugin<BasePluginConfiguration>
             }
         }
         
-        string dllLocation = Assembly.GetExecutingAssembly().Location;
-        string pluginLocation = Path.GetDirectoryName(dllLocation)!;
+        string configLocation = Path.Combine(applicationPaths.PluginConfigurationsPath, "Paradox.PluginPages");
                   
-        logger.LogInformation($"Loading plugin pages from {dllLocation}");
+        logger.LogInformation($"Loading plugin pages from {configLocation}");
         // Read the config and see if any have been defined in here.
-        if (File.Exists(Path.Combine(pluginLocation, "config.json")))
+        if (File.Exists(Path.Combine(configLocation, "config.json")))
         {
-            logger.LogInformation($"Found config.json in {pluginLocation}");
-            JObject config = JObject.Parse(File.ReadAllText(Path.Combine(pluginLocation, "config.json")));
+            logger.LogInformation($"Found config.json in {configLocation}");
+            JObject config = JObject.Parse(File.ReadAllText(Path.Combine(configLocation, "config.json")));
 
             PluginPage[] pages = JsonConvert.DeserializeObject<PluginPage[]>(config.Value<JArray>("pages").ToString());
             
