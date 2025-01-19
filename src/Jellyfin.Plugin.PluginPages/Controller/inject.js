@@ -7,6 +7,13 @@ $(document.body).on('click', '.headerButton[title=Menu]', function() {
 
 function onReady() {
     // When the mainDrawer first get's created, lets add the plugin pages section at the bottom
+    let length = $(".pluginMenuOptions").length;
+    
+    if (length !== 0)
+    {
+        return;
+    }
+    
     $(".mainDrawer-scrollContainer").children('.userMenuOptions').after('<div class="pluginMenuOptions"></div>');
 }
 
