@@ -83,7 +83,7 @@ public class Plugin : BasePlugin<BasePluginConfiguration>
             }
         }
         
-        string configLocation = Path.Combine(applicationPaths.PluginConfigurationsPath, "Paradox.PluginPages");
+        string configLocation = Path.Combine(applicationPaths.PluginConfigurationsPath, typeof(Plugin).Namespace!);
                   
         logger.LogInformation($"Loading plugin pages from {configLocation}");
         // Read the config and see if any have been defined in here.
