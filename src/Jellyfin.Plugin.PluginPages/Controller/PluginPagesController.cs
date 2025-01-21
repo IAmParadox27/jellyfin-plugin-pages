@@ -39,6 +39,13 @@ namespace Jellyfin.Plugin.PluginPages.Controller
             List<PluginPage> pages = m_pluginPagesManager.GetPages()
                 .Select(x =>
                 {
+                    string scheme = Request.Scheme;
+                    IHeaderDictionary requestHeaders = Request.GetTypedHeaders().Headers;
+                    if (requestHeaders.ContainsKey("X-Forwarded-Proto"))
+                    {
+                        scheme = requestHeaders["X-Forwarded-Proto"];
+                    }
+
                     string url = x.Url;
                     if (x.Url.StartsWith("/"))
                     {
