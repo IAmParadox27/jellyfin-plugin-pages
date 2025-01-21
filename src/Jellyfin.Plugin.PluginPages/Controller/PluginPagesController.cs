@@ -49,7 +49,7 @@ namespace Jellyfin.Plugin.PluginPages.Controller
                     string url = x.Url;
                     if (x.Url.StartsWith("/"))
                     {
-                        url = $"{Request.Scheme}://{Request.Host.Value}{x.Url}";
+                        url = $"{scheme}://{Request.Host.Value}{x.Url}";
                     }
 
                     return new PluginPage
