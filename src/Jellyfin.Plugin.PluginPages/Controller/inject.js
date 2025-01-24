@@ -5,6 +5,29 @@ $(document.body).on('click', '.headerButton[title=Menu]', function() {
     populateSidebar();
 });
 
+window.navigation.addEventListener("navigate", (event) => {
+    
+    if (event.destination.url.includes('#')) {
+        let parts = event.destination.url.split('#');
+        
+        if (parts[1].startsWith('/userpluginsettings.html')) {
+            loadHtml(parts[1]);
+        }
+    }
+});
+
+function loadHtml(url) {
+    // ApiClient.ajax({
+    //     type: 'GET',
+    //     url: '/web' + url
+    // }).then(function(response) {
+    //     const fragment = document.createRange().createContextualFragment(response);
+    //
+    //     const element = $('.mainAnimatedPages')[0];
+    //     element.append(fragment);
+    // });
+}
+
 function onReady() {
     // When the mainDrawer first get's created, lets add the plugin pages section at the bottom
     let length = $(".pluginMenuOptions").length;
@@ -18,34 +41,37 @@ function onReady() {
 }
 
 function populateSidebar() {
-    const url = ApiClient.getUrl('PluginPages/User');
-    ApiClient.getJSON(url).then(function(items) {
+    
+    if (ApiClient !== undefined && ApiClient !== null) {
+        const url = ApiClient.getUrl('PluginPages/User');
+        ApiClient.getJSON(url).then(function(items) {
 
-        let pluginMenuOptions = $(".pluginMenuOptions")[0];
-        
-        if (items.TotalRecordCount > 0) {
-            let html = `<h3 class="sidebarHeader">Plugin Settings</h3>`;
+            let pluginMenuOptions = $(".pluginMenuOptions")[0];
 
-            html += items.Items.map(function(item) {
-                const icon = item.Icon;
-                const itemId = item.Id;
+            if (items.TotalRecordCount > 0) {
+                let html = `<h3 class="sidebarHeader">Plugin Settings</h3>`;
 
-                return `<a is="emby-linkbutton" data-itemid="${itemId}" class="lnkMediaFolder navMenuOption" href="#/userpluginsettings.html?pageUrl=${item.Url}">
+                html += items.Items.map(function(item) {
+                    const icon = item.Icon;
+                    const itemId = item.Id;
+
+                    return `<a is="emby-linkbutton" data-itemid="${itemId}" class="lnkMediaFolder navMenuOption" href="#/userpluginsettings.html?pageUrl=${item.Url}">
                                     <span class="material-icons navMenuOptionIcon ${icon}" aria-hidden="true"></span>
                                     <span class="sectionName navMenuOptionText">${item.DisplayText}</span>
                                 </a>`;
-            }).join('');
+                }).join('');
 
-            pluginMenuOptions.innerHTML = html;
-            const elem = pluginMenuOptions;
-            const sidebarLinks = elem.querySelectorAll('.navMenuOption');
+                pluginMenuOptions.innerHTML = html;
+                const elem = pluginMenuOptions;
+                const sidebarLinks = elem.querySelectorAll('.navMenuOption');
 
-            for (const sidebarLink of sidebarLinks) {
-                sidebarLink.removeEventListener('click', onSidebarLinkClick);
-                sidebarLink.addEventListener('click', onSidebarLinkClick);
+                for (const sidebarLink of sidebarLinks) {
+                    sidebarLink.removeEventListener('click', onSidebarLinkClick);
+                    sidebarLink.addEventListener('click', onSidebarLinkClick);
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 $(document.body).on('ready', '.mainDrawer-scrollContainer', onReady);
@@ -58,5 +84,8 @@ function onSidebarLinkClick() {
     LibraryMenu.setTitle(text);
 }
 
-onReady();
-populateSidebar();
+setTimeout(function() {
+    if (window.location.hash.includes('userpluginsettings.html')) {
+        loadHtml(window.location.hash.split('#')[1]);
+    }
+}, 1000);

@@ -36,7 +36,30 @@ namespace Jellyfin.Plugin.PluginPages.Controller
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<QueryResult<PluginPage>> GetPluginPages()
         {
-            List<PluginPage> pages = m_pluginPagesManager.GetPages().ToList();
+            List<PluginPage> pages = m_pluginPagesManager.GetPages()
+                .Select(x =>
+                {
+                    string scheme = Request.Scheme;
+                    IHeaderDictionary requestHeaders = Request.GetTypedHeaders().Headers;
+                    if (requestHeaders.ContainsKey("X-Forwarded-Proto"))
+                    {
+                        scheme = requestHeaders["X-Forwarded-Proto"];
+                    }
+
+                    string url = x.Url;
+                    if (x.Url.StartsWith("/"))
+                    {
+                        url = $"{scheme}://{Request.Host.Value}{x.Url}";
+                    }
+
+                    return new PluginPage
+                    {
+                        Id = x.Id,
+                        Icon = x.Icon,
+                        DisplayText = x.DisplayText,
+                        Url = url
+                    };
+                }).ToList();
 
             return new QueryResult<PluginPage>(
                 0,

@@ -16,6 +16,19 @@
 
     <ItemGroup>
       <EmbeddedResource Include="Controller\inject.js" />
+      <None Remove="Controller\userpluginsettings.html" />
+      <EmbeddedResource Include="Controller\userpluginsettings.html" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Jellyfin.Plugin.FileTransformation">
+          <Private>False</Private>
+          <HintPath>C:\ProgramData\Jellyfin\Server\plugins\File Transformation_1.0.0.0\Jellyfin.Plugin.FileTransformation.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+      <Exec Command="xcopy $(OutDir) &quot;C:\ProgramData\Jellyfin\Server\plugins\Plugin Pages_1.0.0.5&quot; /y" />
+    </Target>
 
 </Project>
