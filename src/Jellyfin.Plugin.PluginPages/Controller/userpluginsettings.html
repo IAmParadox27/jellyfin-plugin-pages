@@ -5,7 +5,7 @@
         setTimeout(function(){
             let container = document.getElementsByClassName('userPluginSettingsContainer')[0];
 
-            let url = new URL(window.location.host + window.location.hash.substring(1));
+            let url = new URL(window.location.protocol + "//" + window.location.host + window.location.hash.substring(1));
             let pageUrl = url.searchParams.get('pageUrl');
 
             ApiClient.ajax({
