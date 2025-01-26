@@ -5,29 +5,6 @@ $(document.body).on('click', '.headerButton[title=Menu]', function() {
     populateSidebar();
 });
 
-window.navigation.addEventListener("navigate", (event) => {
-    
-    if (event.destination.url.includes('#')) {
-        let parts = event.destination.url.split('#');
-        
-        if (parts[1].startsWith('/userpluginsettings.html')) {
-            loadHtml(parts[1]);
-        }
-    }
-});
-
-function loadHtml(url) {
-    // ApiClient.ajax({
-    //     type: 'GET',
-    //     url: '/web' + url
-    // }).then(function(response) {
-    //     const fragment = document.createRange().createContextualFragment(response);
-    //
-    //     const element = $('.mainAnimatedPages')[0];
-    //     element.append(fragment);
-    // });
-}
-
 function onReady() {
     // When the mainDrawer first get's created, lets add the plugin pages section at the bottom
     let length = $(".pluginMenuOptions").length;
@@ -73,19 +50,3 @@ function populateSidebar() {
         });
     }
 }
-
-$(document.body).on('ready', '.mainDrawer-scrollContainer', onReady);
-
-$(document.body).on('ready', '.pluginMenuOptions', populateSidebar);
-
-function onSidebarLinkClick() {
-    const section = this.getElementsByClassName('sectionName')[0];
-    const text = section ? section.innerHTML : this.innerHTML;
-    LibraryMenu.setTitle(text);
-}
-
-setTimeout(function() {
-    if (window.location.hash.includes('userpluginsettings.html')) {
-        loadHtml(window.location.hash.split('#')[1]);
-    }
-}, 1000);

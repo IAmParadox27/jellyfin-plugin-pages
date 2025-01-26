@@ -2,17 +2,17 @@
 using System.Runtime.Loader;
 using Jellyfin.Plugin.PluginPages.Library;
 using Jellyfin.Plugin.PluginPages.Manager;
+using Jellyfin.Plugin.Referenceable.Services;
 using MediaBrowser.Controller;
-using MediaBrowser.Controller.Plugins;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 
 namespace Jellyfin.Plugin.PluginPages
 {
-    public class PluginServiceRegistrator : IPluginServiceRegistrator
+    public class PluginPagesServiceRegistrator : PluginServiceRegistrator
     {
-        public void RegisterServices(IServiceCollection serviceCollection, IServerApplicationHost applicationHost)
+        public override void ConfigureServices(IServiceCollection serviceCollection, IServerApplicationHost applicationHost)
         {
             AppDomain.CurrentDomain.AssemblyResolve += (sender, args) =>
             {
