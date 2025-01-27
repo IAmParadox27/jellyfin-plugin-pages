@@ -4,7 +4,6 @@ using System.Runtime.Loader;
 using System.Text.RegularExpressions;
 using Jellyfin.Plugin.FileTransformation.Controller;
 using Jellyfin.Plugin.FileTransformation.Infrastructure;
-using Jellyfin.Plugin.PluginPages.Generated;
 using Jellyfin.Plugin.PluginPages.Library;
 using MediaBrowser.Common.Configuration;
 using MediaBrowser.Common.Plugins;
