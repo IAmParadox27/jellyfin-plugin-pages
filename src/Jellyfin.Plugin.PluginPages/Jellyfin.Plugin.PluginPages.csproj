@@ -11,7 +11,8 @@
       <PackageReference Include="Jellyfin.Common" Version="10.10.3" />
       <PackageReference Include="Jellyfin.Data" Version="10.10.3" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-      <PackageReference Include="Jellyfin.Plugin.Referenceable" Version="1.0.4" OutputItemType="Analyzer" GeneratePathProperty="true" />
+      <PackageReference Include="Jellyfin.Plugin.Referenceable" Version="1.0.5" OutputItemType="Analyzer" GeneratePathProperty="true" />
+      <PackageReference Include="Jellyfin.Plugin.FileTransformation" Version="1.0.1" />
     </ItemGroup>
 
     <PropertyGroup>
@@ -22,16 +23,6 @@
       <EmbeddedResource Include="Controller\inject.js" />
       <None Remove="Controller\userpluginsettings.html" />
       <EmbeddedResource Include="Controller\userpluginsettings.html" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="Jellyfin.Plugin.FileTransformation">
-          <Private>False</Private>
-          <HintPath>C:\ProgramData\Jellyfin\Server\plugins\File Transformation_1.0.0.0\Jellyfin.Plugin.FileTransformation.dll</HintPath>
-      </Reference>
-      <Reference Include="MediaBrowser.Controller">
-        <HintPath>C:\Program Files\Jellyfin\Server\MediaBrowser.Controller.dll</HintPath>
-      </Reference>
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
