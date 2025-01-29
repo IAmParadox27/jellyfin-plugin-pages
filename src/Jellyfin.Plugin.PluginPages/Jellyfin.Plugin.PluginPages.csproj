@@ -11,8 +11,8 @@
       <PackageReference Include="Jellyfin.Common" Version="10.10.3" />
       <PackageReference Include="Jellyfin.Data" Version="10.10.3" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-      <PackageReference Include="Jellyfin.Plugin.Referenceable" Version="1.0.5" OutputItemType="Analyzer" GeneratePathProperty="true" />
-      <PackageReference Include="Jellyfin.Plugin.FileTransformation" Version="1.0.1" />
+      <PackageReference Include="Jellyfin.Plugin.Referenceable" Version="1.0.6" OutputItemType="Analyzer" GeneratePathProperty="true" />
+      <PackageReference Include="Jellyfin.Plugin.FileTransformation" Version="1.0.2" />
     </ItemGroup>
 
     <PropertyGroup>
