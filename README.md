@@ -12,6 +12,12 @@
 	<a href="https://github.com/IAmParadox27/jellyfin-plugin-pages/releases">
 		<img alt="Current Release" src="https://img.shields.io/github/release/IAmParadox27/jellyfin-plugin-pages.svg" />
 	</a>
+	<a href="https://www.nuget.org/packages/Jellyfin.Plugin.PluginPages">
+		<img alt="NuGet Release" src="https://img.shields.io/nuget/v/Jellyfin.Plugin.PluginPages" />
+	</a>
+  <a href="https://www.nuget.org/packages/Jellyfin.Plugin.Referenceable/1.1.0">
+    <img alt="Shield Example" src="https://img.shields.io/badge/JF%20Referenceable-v1.1.0-blue" /> 
+  </a>
 </p>
 
 ## Introduction
@@ -27,19 +33,21 @@ Below are some examples from the plugin that required this one **Home Screen Sec
 
 ### Prerequisites
 - This plugin is based on Jellyfin Version `10.10.3`
-- A custom deployment of `jellyfin-web` is required to run this plugin. It can be cloned from https://github.com/IAmParadox27/jellyfin-web or there is release with the data pre-packaged for simpler install available to download.
-- The `jellyfin-web` directory should be writable by whatever user is running the Jellyfin server instance. If on Windows this might mean changing the permissions for `C:\Program Files\Jellyfin\Server\jellyfin-web` to allow write access the Jellyfin user.
+- Required Plugins:
+  - [file-transformation](https://github.com/IAmParadox27/jellyfin-plugin-file-transformation)
+
 ### Installation
 1. Add `https://www.iamparadox.dev/jellyfin/plugins/manifest.json` to your plugin repositories.
 2. Install `Plugin Pages` from the Catalogue.
 3. Restart Jellyfin.
+
 ## Upcoming Features/Known Issues
 If you find an issue with this plugin, please open an issue on GitHub.
 ## Contribution
 ### Adding your pages
 There are two ways your plugin can add pages to the Plugin Pages section.
 
-1. Reference the DLL directly and request `IPluginPagesManager` from the Dependency Injection flow and call `RegisterPluginPage` providing the config
+1. Reference the NuGet package `Jellyfin.Plugin.PluginPages` and request `IPluginPagesManager` from the Dependency Injection flow and call `RegisterPluginPage` providing the config
 2. Edit `Jellyfin.Plugin.PluginPages/config.json` found in the `plugins/configurations` folder of the installed Jellyfin instance. This folder location can be retrieved from `IApplicationPaths.PluginConfigurationsPath` in the .NET API.
 ### Pull Requests
 I'm open to any and all pull requests that expand the functionality of this plugin, while keeping within the scope of what its outlined to do.
