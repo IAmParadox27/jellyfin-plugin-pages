@@ -5,6 +5,13 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>1.1.0</Version>
+        <PackageProjectUrl>https://github.com/IAmParadox27/jellyfin-plugin-pages</PackageProjectUrl>
+        <PackageLicenseUrl>https://raw.githubusercontent.com/IAmParadox27/jellyfin-plugin-pages/refs/heads/main/LICENSE</PackageLicenseUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <RepositoryUrl>https://github.com/IAmParadox27/jellyfin-plugin-pages</RepositoryUrl>
+        <RepositoryType>GitHub</RepositoryType>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,6 +24,10 @@
       <PackageReference Include="Jellyfin.Plugin.FileTransformation" Version="1.1.0" />
     </ItemGroup>
 
+    <ItemGroup>
+        <None Include="..\..\README.md" Pack="true" PackagePath="/" />
+    </ItemGroup>
+    
     <PropertyGroup>
         <EnableRepack>false</EnableRepack>
     </PropertyGroup>
@@ -27,7 +38,7 @@
       <EmbeddedResource Include="Controller\userpluginsettings.html" />
     </ItemGroup>
 
-    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="Exists('C:\ProgramData\Jellyfin\Server\plugins\Plugin Pages_1.0.0.5')">
       <Exec Command="xcopy $(OutDir) &quot;C:\ProgramData\Jellyfin\Server\plugins\Plugin Pages_1.0.0.5&quot; /y" />
     </Target>
 
