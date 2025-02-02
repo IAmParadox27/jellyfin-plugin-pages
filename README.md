@@ -15,8 +15,8 @@
 	<a href="https://www.nuget.org/packages/Jellyfin.Plugin.PluginPages">
 		<img alt="NuGet Release" src="https://img.shields.io/nuget/v/Jellyfin.Plugin.PluginPages" />
 	</a>
-  <a href="https://www.nuget.org/packages/Jellyfin.Plugin.Referenceable/1.1.0">
-    <img alt="Shield Example" src="https://img.shields.io/badge/JF%20Referenceable-v1.1.0-blue" /> 
+  <a href="https://www.nuget.org/packages/Jellyfin.Plugin.Referenceable/1.2.1">
+    <img alt="Shield Example" src="https://img.shields.io/badge/JF%20Referenceable-v1.2.1-blue" /> 
   </a>
 </p>
 
@@ -32,7 +32,7 @@ Below are some examples from the plugin that required this one **Home Screen Sec
 ## Installation
 
 ### Prerequisites
-- This plugin is based on Jellyfin Version `10.10.3`
+- This plugin is based on Jellyfin Version `10.10.5`
 - Required Plugins:
   - [file-transformation](https://github.com/IAmParadox27/jellyfin-plugin-file-transformation)
 
