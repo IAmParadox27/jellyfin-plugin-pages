@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>1.2.1</Version>
+        <Version>1.2.2</Version>
         <PackageProjectUrl>https://github.com/IAmParadox27/jellyfin-plugin-pages</PackageProjectUrl>
         <PackageLicenseUrl>https://raw.githubusercontent.com/IAmParadox27/jellyfin-plugin-pages/refs/heads/main/LICENSE</PackageLicenseUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -20,8 +20,8 @@
       <PackageReference Include="Jellyfin.Common" Version="10.10.5" />
       <PackageReference Include="Jellyfin.Data" Version="10.10.5" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-      <PackageReference Include="Jellyfin.Plugin.Referenceable" Version="1.2.1" OutputItemType="Analyzer" GeneratePathProperty="true" />
-      <PackageReference Include="Jellyfin.Plugin.FileTransformation" Version="1.2.1" />
+      <PackageReference Include="Jellyfin.Plugin.Referenceable" Version="1.2.2" OutputItemType="Analyzer" GeneratePathProperty="true" />
+      <PackageReference Include="Jellyfin.Plugin.FileTransformation" Version="1.2.2" />
     </ItemGroup>
 
     <ItemGroup>
