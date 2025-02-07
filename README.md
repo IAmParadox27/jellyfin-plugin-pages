@@ -15,8 +15,8 @@
 	<a href="https://www.nuget.org/packages/Jellyfin.Plugin.PluginPages">
 		<img alt="NuGet Release" src="https://img.shields.io/nuget/v/Jellyfin.Plugin.PluginPages" />
 	</a>
-  <a href="https://www.nuget.org/packages/Jellyfin.Plugin.Referenceable/1.2.1">
-    <img alt="Shield Example" src="https://img.shields.io/badge/JF%20Referenceable-v1.2.1-blue" /> 
+  <a href="https://www.nuget.org/packages/Jellyfin.Plugin.Referenceable/1.2.2">
+    <img alt="Shield Example" src="https://img.shields.io/badge/JF%20Referenceable-v1.2.2-blue" /> 
   </a>
 </p>
 
