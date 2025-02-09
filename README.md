@@ -1,9 +1,7 @@
 <h1 align="center">Plugin Pages</h1>
 <h2 align="center">A Jellyfin Plugin</h2>
 <p align="center">
-	<img alt="Logo" width="256" height="256" src="https://camo.githubusercontent.com/ab4b1ec289bed0a0ac8dd2828c41b695dbfeaad8c82596339f09ce23b30d3eb3/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f73656c666873742f69636f6e732f776562702f6a656c6c7966696e2e77656270" />
-	<br />
-	<sub>Custom Logo Coming Soon</sub>
+	<img alt="Logo" src="https://raw.githubusercontent.com/IAmParadox27/jellyfin-plugin-pages/main/src/logo.png" />
 	<br />
 	<br />
 	<a href="https://github.com/IAmParadox27/jellyfin-plugin-pages">
@@ -12,12 +10,6 @@
 	<a href="https://github.com/IAmParadox27/jellyfin-plugin-pages/releases">
 		<img alt="Current Release" src="https://img.shields.io/github/release/IAmParadox27/jellyfin-plugin-pages.svg" />
 	</a>
-	<a href="https://www.nuget.org/packages/Jellyfin.Plugin.PluginPages">
-		<img alt="NuGet Release" src="https://img.shields.io/nuget/v/Jellyfin.Plugin.PluginPages" />
-	</a>
-  <a href="https://www.nuget.org/packages/Jellyfin.Plugin.Referenceable/1.2.2">
-    <img alt="Shield Example" src="https://img.shields.io/badge/JF%20Referenceable-v1.2.2-blue" /> 
-  </a>
 </p>
 
 ## Introduction
@@ -38,16 +30,20 @@ Below are some examples from the plugin that required this one **Home Screen Sec
 
 ### Installation
 1. Add `https://www.iamparadox.dev/jellyfin/plugins/manifest.json` to your plugin repositories.
+2. Ensure that `File Transformation` plugin is installed.
 2. Install `Plugin Pages` from the Catalogue.
 3. Restart Jellyfin.
 
 ## Upcoming Features/Known Issues
 If you find an issue with this plugin, please open an issue on GitHub.
+
 ## Contribution
 ### Adding your pages
-There are two ways your plugin can add pages to the Plugin Pages section.
+Currently the only way you can add your own pages is with the following steps.
 
-1. Reference the NuGet package `Jellyfin.Plugin.PluginPages` and request `IPluginPagesManager` from the Dependency Injection flow and call `RegisterPluginPage` providing the config
-2. Edit `Jellyfin.Plugin.PluginPages/config.json` found in the `plugins/configurations` folder of the installed Jellyfin instance. This folder location can be retrieved from `IApplicationPaths.PluginConfigurationsPath` in the .NET API.
+1. Edit `Jellyfin.Plugin.PluginPages/config.json` found in the `plugins/configurations` folder of the installed Jellyfin instance. This folder location can be retrieved from `IApplicationPaths.PluginConfigurationsPath` in the .NET API.
+
+There are plans to add a HTTP request to register pages too but this hasn't been done just yet.
+
 ### Pull Requests
 I'm open to any and all pull requests that expand the functionality of this plugin, while keeping within the scope of what its outlined to do.
