@@ -1,18 +1,14 @@
-﻿using System.Reflection;
-using System.Runtime.Loader;
-using Jellyfin.Plugin.PluginPages.Library;
+﻿using Jellyfin.Plugin.PluginPages.Library;
 using Jellyfin.Plugin.PluginPages.Manager;
-using Jellyfin.Plugin.PluginPages.Services;
 using MediaBrowser.Controller;
+using MediaBrowser.Controller.Plugins;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
 
 namespace Jellyfin.Plugin.PluginPages
 {
-    public class PluginPagesServiceRegistrator : PluginServiceRegistrator
+    public class PluginPagesServiceRegistrator : IPluginServiceRegistrator
     {
-        public override void ConfigureServices(IServiceCollection serviceCollection, IServerApplicationHost applicationHost)
+        public void RegisterServices(IServiceCollection serviceCollection, IServerApplicationHost applicationHost)
         {
             serviceCollection.AddSingleton<IPluginPagesManager, PluginPagesManager>();
         }
