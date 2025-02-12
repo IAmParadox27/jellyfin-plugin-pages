@@ -24,6 +24,8 @@ namespace Jellyfin.Plugin.PluginPages.Services
 
         public async Task ExecuteAsync(IProgress<double> progress, CancellationToken cancellationToken)
         {
+            await Task.Delay(TimeSpan.FromSeconds(5), cancellationToken);
+            
             List<JObject> payloads = new List<JObject>();
 
             {
