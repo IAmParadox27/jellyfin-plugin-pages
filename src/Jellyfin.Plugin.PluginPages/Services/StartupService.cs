@@ -1,5 +1,7 @@
-﻿using System.Net.Http.Headers;
+﻿using System.IO.Pipes;
+using System.Net.Http.Headers;
 using System.Reflection;
+using System.Text;
 using MediaBrowser.Common.Configuration;
 using MediaBrowser.Controller;
 using MediaBrowser.Model.Tasks;
@@ -24,8 +26,6 @@ namespace Jellyfin.Plugin.PluginPages.Services
 
         public async Task ExecuteAsync(IProgress<double> progress, CancellationToken cancellationToken)
         {
-            await Task.Delay(TimeSpan.FromSeconds(5), cancellationToken);
-            
             List<JObject> payloads = new List<JObject>();
 
             {
@@ -92,24 +92,48 @@ namespace Jellyfin.Plugin.PluginPages.Services
             }
             
             
-            string? publishedServerUrl = m_serverApplicationHost.GetType()
-                .GetProperty("PublishedServerUrl", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(m_serverApplicationHost) as string;
-            
-            foreach (JObject payload in payloads)
-            {
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(publishedServerUrl ?? $"http://localhost:{m_serverApplicationHost.HttpPort}");
+            string fileTransformationPipeName = "Jellyfin.Plugin.FileTransformation.NamedPipe";
+            bool serverSupportsPipeCommunication = Directory.GetFiles(@"\\.\pipe\").Contains($@"\\.\pipe\{fileTransformationPipeName}");
 
-                try
+            if (serverSupportsPipeCommunication)
+            {
+                foreach (var payload in payloads)
                 {
-                    await client.PostAsync("/FileTransformation/RegisterTransformation",
-                        new StringContent(payload.ToString(Formatting.None),
-                            MediaTypeHeaderValue.Parse("application/json")));
+                    NamedPipeClientStream pipeClient = new NamedPipeClientStream(".", fileTransformationPipeName, PipeDirection.InOut);
+                    await pipeClient.ConnectAsync();
+                    byte[] payloadBytes = Encoding.UTF8.GetBytes(payload.ToString(Formatting.None));
+                            
+                    await pipeClient.WriteAsync(BitConverter.GetBytes((long)payloadBytes.Length));
+                    await pipeClient.WriteAsync(payloadBytes, 0, payloadBytes.Length);
+                            
+                    pipeClient.ReadByte();
+                    
+                    await pipeClient.DisposeAsync();
                 }
-                catch (Exception ex)
+            }
+            else
+            {
+                await Task.Delay(TimeSpan.FromSeconds(5), cancellationToken);
+                
+                string? publishedServerUrl = m_serverApplicationHost.GetType()
+                    .GetProperty("PublishedServerUrl", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(m_serverApplicationHost) as string;
+                
+                foreach (JObject payload in payloads)
                 {
-                    m_logger.LogError(ex, $"Caught exception when attempting to register file transformation. Ensure you have `File Transformation` plugin installed on your server.");
-                    return;
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri(publishedServerUrl ?? $"http://localhost:{m_serverApplicationHost.HttpPort}");
+
+                    try
+                    {
+                        await client.PostAsync("/FileTransformation/RegisterTransformation",
+                            new StringContent(payload.ToString(Formatting.None),
+                                MediaTypeHeaderValue.Parse("application/json")));
+                    }
+                    catch (Exception ex)
+                    {
+                        m_logger.LogError(ex, $"Caught exception when attempting to register file transformation. Ensure you have `File Transformation` plugin installed on your server.");
+                        return;
+                    }
                 }
             }
         }
