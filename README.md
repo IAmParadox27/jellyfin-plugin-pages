@@ -24,9 +24,9 @@ Below are some examples from the plugin that required this one **Home Screen Sec
 ## Installation
 
 ### Prerequisites
-- This plugin is based on Jellyfin Version `10.10.5`
+- This plugin is based on Jellyfin Version `10.10.6`
 - Required Plugins:
-  - [file-transformation](https://github.com/IAmParadox27/jellyfin-plugin-file-transformation)
+  - [file-transformation](https://github.com/IAmParadox27/jellyfin-plugin-file-transformation) at least v2.2.1.0
 
 ### Installation
 1. Add `https://www.iamparadox.dev/jellyfin/plugins/manifest.json` to your plugin repositories.
