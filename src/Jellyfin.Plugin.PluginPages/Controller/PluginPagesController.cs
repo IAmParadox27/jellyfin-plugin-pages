@@ -72,47 +72,5 @@ namespace Jellyfin.Plugin.PluginPages.Controller
             
             return NotFound();
         }
-
-        [HttpPost("Patch/IndexHtml")]
-        public ActionResult PatchIndexHtml([FromBody] PatchRequestPayload payload)
-        {
-            return Content(TransformationPatches.IndexHtml(payload), "text/html");
-        }
-        
-        [HttpPost("Patch/UserPlugin/SettingsHtml")]
-        public ActionResult PatchUserPluginSettingsHtml([FromBody] PatchRequestPayload payload)
-        {
-            return Content(TransformationPatches.SettingsHtml(payload), "text/html");
-        }
-        
-        [HttpPost("Patch/UserPlugin/Javascript")]
-        public ActionResult PatchUserPluginJavascript([FromBody] PatchRequestPayload payload)
-        {
-            return Content(TransformationPatches.UserPluginJs(payload), "application/javascript");
-        }
-        
-        [HttpPost("Patch/UserPlugin/IndexHtmlChunk")]
-        public ActionResult PatchUserPluginIndexHtmlJavascript([FromBody] PatchRequestPayload payload)
-        {
-            return Content(TransformationPatches.UserPluginIndexHtml(payload), "application/javascript");
-        }
-        
-        [HttpPost("Patch/MainBundle/PluginSettingsRoute")]
-        public ActionResult PatchMainBundle_PluginSettingsRoute([FromBody] PatchRequestPayload payload)
-        {
-            return Content(TransformationPatches.MainBundlePluginSettingsRoute(payload), "application/javascript");
-        }
-        
-        [HttpPost("Patch/MainBundle/RouteIds")]
-        public ActionResult PatchMainBundle_RouteIds([FromBody] PatchRequestPayload payload)
-        {
-            return Content(TransformationPatches.MainBundleRouteIds(payload), "application/javascript");
-        }
-        
-        [HttpPost("Patch/RuntimeBundle")]
-        public ActionResult PatchRuntimeBundle([FromBody] PatchRequestPayload payload)
-        {
-            return Content(TransformationPatches.RuntimeBundle(payload), "application/javascript");
-        }
     }
 }
