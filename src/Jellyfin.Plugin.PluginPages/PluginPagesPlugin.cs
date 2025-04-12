@@ -1,6 +1,7 @@
 ﻿using Jellyfin.Plugin.PluginPages.Library;
 using MediaBrowser.Common.Configuration;
 using MediaBrowser.Common.Plugins;
+using MediaBrowser.Controller.Configuration;
 using MediaBrowser.Model.Plugins;
 using MediaBrowser.Model.Serialization;
 using Microsoft.Extensions.Logging;
@@ -15,9 +16,16 @@ namespace Jellyfin.Plugin.PluginPages
     
         public override string Name => "Plugin Pages";
 
+        public static PluginPagesPlugin Instance { get; set; } = null!;
+        internal IServerConfigurationManager ServerConfigurationManager { get; set; }
+        
         public PluginPagesPlugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer, ILogger<PluginPagesPlugin> logger,
-            IPluginPagesManager pluginPagesManager) : base(applicationPaths, xmlSerializer)
+            IPluginPagesManager pluginPagesManager, IServerConfigurationManager serverConfigurationManager) : base(applicationPaths, xmlSerializer)
         {
+            Instance = this;
+            
+            ServerConfigurationManager = serverConfigurationManager;
+            
             string configLocation = Path.Combine(applicationPaths.PluginConfigurationsPath, typeof(PluginPagesPlugin).Namespace!);
                   
             logger.LogInformation($"Loading plugin pages from {configLocation}");

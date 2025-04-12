@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Text.RegularExpressions;
 using Jellyfin.Plugin.PluginPages.Model;
+using MediaBrowser.Common.Net;
 
 namespace Jellyfin.Plugin.PluginPages.Helpers
 {
@@ -20,7 +21,15 @@ namespace Jellyfin.Plugin.PluginPages.Helpers
         
         public static string IndexHtml(PatchRequestPayload payload)
         {
-            string scriptElement = "<script plugin=\"PluginPages\" version=\"1.0.0.0\" src=\"/PluginPages/inject.js\" defer></script>";
+            NetworkConfiguration networkConfiguration = PluginPagesPlugin.Instance.ServerConfigurationManager.GetNetworkConfiguration();
+
+            string rootPath = "";
+            if (!string.IsNullOrWhiteSpace(networkConfiguration.BaseUrl))
+            {
+                rootPath = $"/{networkConfiguration.BaseUrl.TrimStart('/').Trim()}";
+            }
+
+            string scriptElement = $"<script plugin=\"PluginPages\" version=\"1.0.0.0\" src=\"{rootPath}/PluginPages/inject.js\" defer></script>";
 
             string regex = Regex.Replace(payload.Contents!, "(</body>)", $"{scriptElement}$1");
 
