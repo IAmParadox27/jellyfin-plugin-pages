@@ -62,13 +62,6 @@ const PluginPages = {
                     }).join('');
 
                     pluginMenuOptions.innerHTML = html;
-                    const elem = pluginMenuOptions;
-                    const sidebarLinks = elem.querySelectorAll('.navMenuOption');
-
-                    for (const sidebarLink of sidebarLinks) {
-                        sidebarLink.removeEventListener('click', onSidebarLinkClick);
-                        sidebarLink.addEventListener('click', onSidebarLinkClick);
-                    }
                 }
             });
         }
