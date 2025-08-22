@@ -127,7 +127,7 @@ namespace Jellyfin.Plugin.PluginPages.Services
         {
             yield return new TaskTriggerInfo()
             {
-                Type = TaskTriggerInfo.TriggerStartup
+                Type = TaskTriggerInfoType.StartupTrigger
             };
         }
 
