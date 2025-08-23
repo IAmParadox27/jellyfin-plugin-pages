@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Runtime.Loader;
 using System.Text;
 using Jellyfin.Plugin.PluginPages.Helpers;
+using Jellyfin.Plugin.PluginPages.JellyfinVersionSpecific;
 using Jellyfin.Plugin.PluginPages.Model;
 using MediaBrowser.Controller;
 using MediaBrowser.Model.Tasks;
@@ -123,13 +124,7 @@ namespace Jellyfin.Plugin.PluginPages.Services
             }
         }
 
-        public IEnumerable<TaskTriggerInfo> GetDefaultTriggers()
-        {
-            yield return new TaskTriggerInfo()
-            {
-                Type = TaskTriggerInfo.TriggerStartup
-            };
-        }
+        public IEnumerable<TaskTriggerInfo> GetDefaultTriggers() => StartupServiceHelper.GetDefaultTriggers();
 
         public string Name => "PluginPages Startup";
 
