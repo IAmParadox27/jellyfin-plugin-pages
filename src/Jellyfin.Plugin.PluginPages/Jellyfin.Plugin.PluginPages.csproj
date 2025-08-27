@@ -33,6 +33,12 @@
         <Compile Remove="JellyfinVersionSpecific/10.11.0-rc5/*.cs" />
     </ItemGroup>
 
+    <!-- Remove 10.11.0 Specific Code from non 10.11.0 builds -->
+    <ItemGroup Condition="'$(JellyfinVersion)' != '10.11.0'">
+        <None Include="JellyfinVersionSpecific/10.11.0/*.cs" />
+        <Compile Remove="JellyfinVersionSpecific/10.11.0/*.cs" />
+    </ItemGroup>
+
     <ItemGroup>
         <None Include="..\..\README.md" />
         <None Include="..\logo.png" CopyToOutputDirectory="Always" />
