@@ -2,6 +2,7 @@
 
 const PluginPages = {
     initialized: false,
+    version: 1,
     init: function () {
         var MutationObserver    = window.MutationObserver || window.WebKitMutationObserver;
         var myObserver          = new MutationObserver (this.mutationHandler);

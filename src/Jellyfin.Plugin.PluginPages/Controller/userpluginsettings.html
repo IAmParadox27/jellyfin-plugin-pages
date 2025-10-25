@@ -8,6 +8,10 @@
             let url = new URL(window.location.protocol + "//" + window.location.host + window.location.hash.substring(1));
             let pageUrl = url.searchParams.get('pageUrl');
 
+            if (pageUrl.startsWith('/')) {
+                pageUrl = ApiClient.getUrl(pageUrl);
+            }
+            
             ApiClient.ajax({
                 type: 'GET',
                 url: pageUrl
