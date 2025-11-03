@@ -40,6 +40,12 @@ Below are some examples from the plugin that required this one **Home Screen Sec
 2. Install `Plugin Pages` from the Catalogue.
 3. Restart Jellyfin.
 
+### FAQ
+
+#### I've updated Jellyfin to latest version but I can't see the plugin available in the catalogue
+
+The likelihood is the plugin hasn't been updated for that version of Jellyfin and the plugins are strictly 1 version compatible. Please wait until an update has been pushed. If you can see the version number in the release assets then please make an issue, but if its not in the assets, please wait. I know Jellyfin has updated, I'll update when I can.
+
 ## Upcoming Features/Known Issues
 If you find an issue with this plugin, please open an issue on GitHub.
 
