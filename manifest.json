@@ -12,7 +12,7 @@
                 "changelog": "Fix version mismatch",
                 "targetAbi": "10.11.5.0",
                 "sourceUrl": "https://github.com/j-vasey/jellyfin-plugin-pages/releases/download/release/Release-1.0.0.zip",
-                "checksum": "c30e739851730986411b6f84d660d6d10fdf8d46744128d65d32958f821c4be0",
+                "checksum": "630F9B914A1E1002F48DE996C1C3D4FE ",
                 "timestamp": "2025-12-22 00:00:00"
             }
         ]
