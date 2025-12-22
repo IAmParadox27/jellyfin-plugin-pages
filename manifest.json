@@ -8,6 +8,14 @@
         "category": "General",
         "versions": [
             {
+                "version": "1.0.3",
+                "changelog": "Fix Version",
+                "targetAbi": "10.11.5.0",
+                "sourceUrl": "https://github.com/j-vasey/jellyfin-plugin-pages/releases/download/1.0.3/Release-1.0.3.zip",
+                "checksum": "9385917c7d3c8b65a062ec8388fa351f",
+                "timestamp": "2025-12-22 23:17:00"
+            },
+            {
                 "version": "1.0.2",
                 "changelog": "Fix BaseURL",
                 "targetAbi": "10.11.5.0",
