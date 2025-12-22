@@ -44,7 +44,12 @@ const PluginPages = {
     },
     populateSidebar: function () {
         if (ApiClient !== undefined && ApiClient !== null) {
+            const baseurl = ApiClient._serverAddress || ApiClient._serverInfo?.LocalAddress || '';
             const url = ApiClient.getUrl('PluginPages/User');
+            
+            console.log('Plugin Pages - Base URL:', baseURL);
+            console.log('Plugin Pages - API URL:', url);
+            
             ApiClient.getJSON(url).then(function(items) {
 
                 let pluginMenuOptions = $(".pluginMenuOptions")[0];
