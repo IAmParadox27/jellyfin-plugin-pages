@@ -52,7 +52,7 @@ const PluginPages = {
             console.log('Plugin Pages - Base URL:', getBaseUrl());
             console.log('Plugin Pages - API URL:', url);
             
-            ApiClient.getJSON(url).then(function(items) {
+            ApiClient.getJSON(getBaseUrl).then(function(items) {
 
                 let pluginMenuOptions = $(".pluginMenuOptions")[0];
 
