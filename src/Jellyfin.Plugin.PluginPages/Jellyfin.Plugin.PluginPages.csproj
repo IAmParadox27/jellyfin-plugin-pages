@@ -11,8 +11,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <Version>1.0.4</Version>
-        <RepositoryUrl>https://github.com/j-vasey/jellyfin-plugin-pages/</RepositoryUrl>
+        <Version>2.4.1.0</Version>
+        <RepositoryUrl>https://github.com/IAmParadox27/jellyfin-plugin-pages</RepositoryUrl>
         <RepositoryType>GitHub</RepositoryType>
     </PropertyGroup>
 

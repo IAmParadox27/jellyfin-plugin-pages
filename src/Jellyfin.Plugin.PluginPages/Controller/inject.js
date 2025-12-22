@@ -43,19 +43,11 @@ const PluginPages = {
     },
     populateSidebar: function () {
         if (ApiClient !== undefined && ApiClient !== null) {
-            // 1. Determine the correct Base URL from the browser location
-            // This ensures it matches the DNS/Proxy address currently in use
             const getBaseUrl = () => {
                 return window.location.origin + window.location.pathname.split('/web/')[0];
             }
-
-            // 2. Instead of ApiClient.getUrl(), construct the URL manually
-            // to ensure it uses the browser's current context
             const url = getBaseUrl() + '/PluginPages/User';
 
-            console.log('Plugin Pages - Final API URL:', url);
-
-            // 3. Use the built-in Fetch or ApiClient with the explicit URL
             ApiClient.getJSON(url).then(function (items) {
                 let pluginMenuOptions = $(".pluginMenuOptions")[0];
 
