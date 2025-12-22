@@ -47,7 +47,7 @@ const PluginPages = {
             const baseurl = ApiClient._serverAddress || ApiClient._serverInfo?.LocalAddress || '';
             const url = ApiClient.getUrl('PluginPages/User');
             
-            console.log('Plugin Pages - Base URL:', baseURL);
+            console.log('Plugin Pages - Base URL:', baseurl);
             console.log('Plugin Pages - API URL:', url);
             
             ApiClient.getJSON(url).then(function(items) {
