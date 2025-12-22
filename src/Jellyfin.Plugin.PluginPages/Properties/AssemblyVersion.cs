@@ -5,5 +5,5 @@ using Jellyfin.Plugin.PluginPages.Attributes;
 [assembly: AssemblyProduct("Jellyfin.Plugins.PluginPages")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyTitle("Jellyfin.Plugins.PluginPages")]
-[assembly: AssemblyVersion("1.0.3")]
+[assembly: AssemblyVersion("1.0.4")]
 [assembly: JellyfinVersion("10.11.2")]
