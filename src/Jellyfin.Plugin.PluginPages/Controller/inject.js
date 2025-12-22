@@ -44,10 +44,12 @@ const PluginPages = {
     },
     populateSidebar: function () {
         if (ApiClient !== undefined && ApiClient !== null) {
-            const baseurl = ApiClient._serverAddress || ApiClient._serverInfo?.LocalAddress || '';
+            const getBaseUrl = () => {
+                return window.location.origin;
+            }
             const url = ApiClient.getUrl('PluginPages/User');
             
-            console.log('Plugin Pages - Base URL:', baseurl);
+            console.log('Plugin Pages - Base URL:', getBaseUrl());
             console.log('Plugin Pages - API URL:', url);
             
             ApiClient.getJSON(url).then(function(items) {
