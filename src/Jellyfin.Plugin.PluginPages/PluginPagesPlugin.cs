@@ -12,9 +12,9 @@ namespace Jellyfin.Plugin.PluginPages
 {
     public class PluginPagesPlugin : BasePlugin<BasePluginConfiguration>
     {
-        public override Guid Id => Guid.Parse("c585509a-e189-4d02-8bf9-8551e0292f58"); 
+        public override Guid Id => Guid.Parse("5b6550fa-a014-4f4c-8a2c-59a43680ac6d"); 
     
-        public override string Name => "JV Plugin Pages";
+        public override string Name => "Plugin Pages";
 
         public static PluginPagesPlugin Instance { get; set; } = null!;
         internal IServerConfigurationManager ServerConfigurationManager { get; set; }
