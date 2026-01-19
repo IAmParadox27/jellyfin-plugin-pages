@@ -17,7 +17,6 @@ const PluginPages = {
             return;
         }
         mutationRecords.forEach ( function (mutation) {
-            console.log (mutation.type);
             if (mutation.addedNodes && mutation.addedNodes.length > 0) {
 
                 [].some.call(mutation.addedNodes, function (addedNode) {
