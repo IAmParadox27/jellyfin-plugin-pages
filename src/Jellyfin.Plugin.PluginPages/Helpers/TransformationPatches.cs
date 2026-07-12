@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 using System.Text.RegularExpressions;
+using Jellyfin.Plugin.PluginPages.Attributes;
+using Jellyfin.Plugin.PluginPages.JellyfinVersionSpecific;
 using Jellyfin.Plugin.PluginPages.Model;
 using MediaBrowser.Common.Net;
 
@@ -83,8 +85,8 @@ namespace Jellyfin.Plugin.PluginPages.Helpers
 
         public static string MainBundleRouteIds(PatchRequestPayload payload)
         {
-            string scriptElement = @$"""./user/plugin/index"":[{string.Join(',', s_userPluginPagesIds)}],";
-            scriptElement += @$"""./user/plugin/index.html"":[{string.Join(',', s_userPluginPagesHtmlIds)}],";
+            string scriptElement = s_userPluginPagesIds.GetPageInjection("./user/plugin/index");
+            scriptElement += s_userPluginPagesHtmlIds.GetPageInjection("./user/plugin/index.html");
             
             string regex = Regex.Replace(payload.Contents!, "(\"\\.\\/home\\.html\")", $"{scriptElement}$1");
             
