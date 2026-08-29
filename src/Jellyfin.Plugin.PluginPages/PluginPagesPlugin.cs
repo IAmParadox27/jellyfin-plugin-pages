@@ -18,6 +18,7 @@ namespace Jellyfin.Plugin.PluginPages
 
         public static PluginPagesPlugin Instance { get; set; } = null!;
         internal IServerConfigurationManager ServerConfigurationManager { get; set; }
+        internal IPluginPagesManager PluginPagesManager { get; set; }
         
         public PluginPagesPlugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer, ILogger<PluginPagesPlugin> logger,
             IPluginPagesManager pluginPagesManager, IServerConfigurationManager serverConfigurationManager) : base(applicationPaths, xmlSerializer)
@@ -25,11 +26,13 @@ namespace Jellyfin.Plugin.PluginPages
             Instance = this;
             
             ServerConfigurationManager = serverConfigurationManager;
+            PluginPagesManager = pluginPagesManager;
             
             string configLocation = Path.Combine(applicationPaths.PluginConfigurationsPath, typeof(PluginPagesPlugin).Namespace!);
                   
             logger.LogInformation($"Loading plugin pages from {configLocation}");
         
+            // This is legacy, at some point I want to remove this but other plugins are using it so I'll leave it for a few releases.
             // Read the config and see if any have been defined in here.
             if (File.Exists(Path.Combine(configLocation, "config.json")))
             {
