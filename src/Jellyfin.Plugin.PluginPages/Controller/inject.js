@@ -11,6 +11,10 @@ const PluginPages = {
         $("body").each ( function () {
             myObserver.observe (this, obsConfig);
         } );
+        $(document).on('click', '[data-plugin-pages="true"][href]', function () {
+            var backdrop = document.querySelector('#app-user-menu > .MuiBackdrop-root');
+            if (backdrop) backdrop.click();
+        });
     },
     mutationHandler: function (mutationRecords) {
         if (PluginPages.initialized) {
@@ -102,4 +106,10 @@ const PluginPages = {
     }
 };
 
-PluginPages.init();
+(function waitForJQuery() {
+    if (typeof window.$ === 'undefined' || typeof window.$.fn === 'undefined') {
+        setTimeout(waitForJQuery, 50);
+        return;
+    }
+    PluginPages.init();
+})();

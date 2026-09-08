@@ -31,7 +31,8 @@ namespace Jellyfin.Plugin.PluginPages.Helpers
                 rootPath = $"/{networkConfiguration.BaseUrl.TrimStart('/').Trim()}";
             }
 
-            string scriptElement = $"<script plugin=\"PluginPages\" version=\"1.0.0.0\" src=\"{rootPath}/PluginPages/inject.js\" defer></script>";
+            string version = PluginPagesPlugin.Instance.Version.ToString();
+            string scriptElement = $"<script plugin=\"PluginPages\" version=\"{version}\" src=\"{rootPath}/PluginPages/inject.js?v={version}\" defer></script>";
 
             string regex = Regex.Replace(payload.Contents!, "(</body>)", $"{scriptElement}$1");
 
