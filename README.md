@@ -52,6 +52,26 @@ If you find an issue with this plugin, please open an issue on GitHub.
 
 ## Contribution
 ### Adding your pages
+#### The plugin way (3.0.0.0+)
+The v3 page payload supports:
+
+```
+{
+  "id": "your-plugin-settings",
+  "url": "yourpluginsettings.html",
+  "displayText": "Your Plugin",
+  "icon": "settings",
+  "isEnabledAssembly": "Your.Plugin.Assembly",
+  "isEnabledClass": "PageAvailability",
+  "isEnabledMethod": "IsEnabled"
+}
+```
+
+`id`, `url`, and `displayText` identify the page. `icon` controls its menu icon. The three optional `isEnabled`... values point to a static callback that decides whether the page should be shown.
+
+Register the payload by locating the Plugin Pages assembly and invoking `PluginInterface.RegisterPage` through reflection. Remove it with `PluginInterface.RemovePage(string id)`. You can see an example of how this is done in [HomeScreenSections/Services/StartupService.cs#L120-L135](https://github.com/IAmParadox27/jellyfin-plugin-home-sections/blob/main/src/Jellyfin.Plugin.HomeScreenSections/Services/StartupService.cs#L120-L135)
+
+#### The manual way (All versions)
 Currently the only way you can add your own pages is with the following steps.
 
 1. Edit `Jellyfin.Plugin.PluginPages/config.json` found in the `plugins/configurations` folder of the installed Jellyfin instance. This folder location can be retrieved from `IApplicationPaths.PluginConfigurationsPath` in the .NET API.
